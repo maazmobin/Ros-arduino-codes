@@ -1,6 +1,6 @@
 
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
-    #include "Wire.h"
+#include "Wire.h"
 #endif
 #include "I2Cdev.h"
 #include "MPU6050.h"
@@ -164,12 +164,12 @@ void serialEvent1() {
       stringComplete = true;
     }
   }
-  odo=0;
-if(sendPayload[0]=='e')
-    {
-      odo=1;
-      }
-    stringComplete = false;
+      odo=0;
+    if(sendPayload[0]=='e')
+      {
+        odo=1;
+        }
+      stringComplete = false;
 }
 
 void serialEvent() {
@@ -180,19 +180,19 @@ void serialEvent() {
       stringComplete2 = true;
     }
   }
-  if (stringComplete2) {
-    Serial.print(sendPayload2);
-if(sendPayload2.startsWith("1")){
-   sendPayload2=sendPayload2.substring(2);
-  Serial.print(sendPayload2);
-    if (sendPayload2.startsWith("MOTOR")) {
-      sendPayload2=sendPayload2.substring(6);
-      Serial1.print(sendPayload2);
+    if (stringComplete2) {
       Serial.print(sendPayload2);
+    if(sendPayload2.startsWith("1")){
+      sendPayload2=sendPayload2.substring(2);
+      Serial.print(sendPayload2);
+      if (sendPayload2.startsWith("MOTOR")) {
+        sendPayload2=sendPayload2.substring(6);
+        Serial1.print(sendPayload2);
+        Serial.print(sendPayload2);
+      }
     }
-  }
- // else{Serial.print("Hello World");}
-  sendPayload2="";
-  stringComplete2 = false;
+  // else{Serial.print("Hello World");}
+    sendPayload2="";
+    stringComplete2 = false;
   }
 }
